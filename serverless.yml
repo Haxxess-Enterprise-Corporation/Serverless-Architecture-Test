@@ -1,23 +1,31 @@
 service: myserverlessproject3
 
+frameworkVersion: "3"
+
 provider:
     name: aws
-    runtime: nodejs12.x
-    profile: serverlessUser
-    region: eu-west-1
+    runtime: nodejs18.x
+    stage: dev
+    profile: dev
+    region: us-east-1
     environment:
         tableName: ${self:custom.tableName}
         bucketName: ${self:custom.bucketName}
-    iamRoleStatements:
-        - Effect: Allow
-          Action:
-              - dynamodb:*
-              - s3:*
-              - ses:*
-          Resource: '*'
+    iam:
+        role:
+            statements:
+              - Effect: Allow
+                Action:
+                    - dynamodb:*
+                    - s3:*
+                    - ses:*
+                Resource: '*'
 
 plugins:
     - serverless-webpack
+    - serverless-dynamodb
+    - serverless-offline
+
 
 package:
     individually: true
@@ -25,6 +33,19 @@ package:
 custom:
     tableName: player-points-table
     bucketName: myserverlessprojectuploadbucket-12312356
+    defaultStage: dev
+    webpack:
+        webpackConfig: ./webpack.config.js
+        includeModules: true
+    dynamodb:
+        stages:
+            - dev
+        start:
+            port: 8000
+            inMemory: true
+            migrate: true
+        migration:
+            dir: db/migrations
 
 functions:
     getPlayerScore:

@@ -34,7 +34,7 @@ const validateEventBody = async state => {
 
     try {
         const { event } = state;
-
+console.log(`Event body: ${event.body}`);
         await bodySchema.validate(event.body, { strict: true });
     } catch (error) {
         console.log('yup validation error of event.body', error);

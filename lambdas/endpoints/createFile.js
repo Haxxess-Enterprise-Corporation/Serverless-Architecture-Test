@@ -4,8 +4,6 @@ const S3 = require('../common/S3');
 const bucket = process.env.bucketName;
 
 exports.handler = async event => {
-    console.log('event', event);
-
     if (!event.pathParameters || !event.pathParameters.fileName) {
         // failed without an fileName
         return Responses._400({ message: 'missing the fileName from the path' });
