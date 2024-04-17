@@ -4,8 +4,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "jest",
-    "coverage": "jest --coverage"
+    "test": "jest --runInBand --detectOpenHandles --forceExit",
+    "coverage": "jest --coverage --runInBand --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
