@@ -3,7 +3,7 @@ const Dynamo = require('../common/Dynamo');
 
 const { withHooks } = require('../common/hooks');
 
-const tableName = process.env.tableName;
+const tableName = 'player-points-table';
 
 const handler = async event => {
     if (!event.pathParameters.ID) {

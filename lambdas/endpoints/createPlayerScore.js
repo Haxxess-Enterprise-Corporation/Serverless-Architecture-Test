@@ -3,7 +3,7 @@ const Dynamo = require('../common/Dynamo');
 const { withHooks, hooksWithValidation } = require('../common/hooks');
 const yup = require('yup');
 
-const tableName = process.env.tableName;
+const tableName = 'player-points-table';
 
 const bodySchema = yup.object().shape({
     name: yup.string().required(),
