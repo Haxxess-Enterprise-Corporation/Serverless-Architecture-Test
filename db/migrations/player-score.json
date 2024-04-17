@@ -13,9 +13,6 @@
                 "AttributeType": "S"
             }
         ],
-        "ProvisionedThroughput": {
-            "ReadCapacityUnits": 1,
-            "WriteCapacityUnits": 1
-        }
+        "ProvisionedThroughput": "PAY_PER_REQUEST"
     }
 }
