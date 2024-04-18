@@ -10,7 +10,6 @@ const handler = async event => {
         // failed without an ID
         return Responses._400({ message: 'missing the ID from the path' });
     }
-
     let ID = event.pathParameters.ID;
 
     const user = await Dynamo.get(ID, tableName);

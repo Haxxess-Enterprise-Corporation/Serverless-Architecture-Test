@@ -26,6 +26,7 @@ exports.handler = async event => {
         },
         Source: from,
     };
+    
 
     try {
         await SES.sendEmail(params).promise();

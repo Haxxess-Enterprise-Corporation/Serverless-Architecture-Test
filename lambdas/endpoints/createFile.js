@@ -10,6 +10,7 @@ exports.handler = async event => {
     }
 
     let fileName = event.pathParameters.fileName;
+    
     const data = JSON.parse(event.body);
 
     const newData = await S3.write(data, fileName, bucket).catch(err => {
