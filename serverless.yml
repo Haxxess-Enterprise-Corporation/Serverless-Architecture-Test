@@ -1,3 +1,5 @@
+org: tochinny
+app: sls-test
 service: myserverlessproject3
 
 frameworkVersion: "3"
@@ -25,7 +27,7 @@ plugins:
     - serverless-webpack
     - serverless-dynamodb
     - serverless-offline
-
+    - serverless-plugin-scripts
 
 package:
     individually: true
@@ -46,7 +48,10 @@ custom:
             migrate: true
         migration:
             dir: db/migrations
-
+    scripts:
+        hooks:
+            'aws:common:validate:validate': npm run test
+ 
 functions:
     getPlayerScore:
         handler: lambdas/endpoints/getPlayerScore.handler
@@ -88,10 +93,6 @@ functions:
 
 resources:
     Resources:
-        DemoBucketUpload:
-            Type: AWS::S3::Bucket
-            Properties:
-                BucketName: ${self:custom.bucketName}
         MyDynamoDbTable:
             Type: AWS::DynamoDB::Table
             Properties:
